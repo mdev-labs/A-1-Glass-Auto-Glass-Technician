@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>A-1 Glass — Auto Glass Experts | Cedar City, UT | Since 2000</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --black:    #0a0a0a;
+      --dark:     #111318;
+      --dark-mid: #1a1d25;
+      --steel:    #2a2f3d;
+      --red:      #d42b2b;
+      --red-dark: #b02020;
+      --red-glow: rgba(212,43,43,0.15);
+      --white:    #ffffff;
+      --off:      #f4f4f2;
+      --text:     #1a1a1a;
+      --text-mid: #555;
+      --text-light: #888;
+      --border:   rgba(255,255,255,0.08);
+      --border-light: #e5e5e5;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .ann-bar {
+      background: var(--red);
+      color: var(--white);
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+    .ann-bar a { color: var(--white); font-weight: 700; text-decoration: underline; }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 68px;
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5); }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+    .nav-logo-badge {
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      letter-spacing: 0.02em;
+      line-height: 1.2;
+    }
+    .nav-logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .nav-logo-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: var(--white) !important;
+      padding: 0.55rem 1.3rem;
+      border-radius: 2px;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--red-dark) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--dark);
+      position: relative;
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    /* Diagonal red stripe */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 0%, rgba(212,43,43,0.06) 100%);
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Grid texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.1s;
+    }
+    .hero-eyebrow-pill {
+      background: var(--red);
+      color: var(--white);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      padding: 0.3rem 0.8rem;
+      border-radius: 1px;
+    }
+    .hero-eyebrow span {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .hero-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 800;
+      line-height: 0.95;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.25s;
+    }
+    .hero-title .accent { color: var(--red); }
+    .hero-title .outline {
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.25);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.5);
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.4s;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.55s;
+    }
+
+    .btn-red {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--red);
+      color: var(--white);
+      padding: 1rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); }
+    .btn-red svg { transition: transform 0.2s; }
+    .btn-red:hover svg { transform: translateX(4px); }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.7);
+      padding: 1rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: border-color 0.2s, color 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--white); }
+
+    /* Hero right — stat panel */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.7s;
+    }
+    .hero-stat-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      transition: background 0.2s;
+    }
+    .hero-stat-card:hover { background: rgba(255,255,255,0.07); }
+    .hero-stat-icon {
+      width: 44px; height: 44px;
+      background: var(--red-glow);
+      border: 1px solid rgba(212,43,43,0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .hero-stat-icon svg { color: var(--red); }
+    .hero-stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 0.2rem;
+    }
+
+    /* ── TRUST STRIP ── */
+    .trust-strip {
+      background: var(--red);
+      padding: 1rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+    }
+    .trust-item svg { color: var(--white); flex-shrink: 0; }
+    .trust-sep { color: rgba(255,255,255,0.3); font-size: 1.2rem; }
+
+    /* ── SHARED SECTION ── */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+    .section-label-bar {
+      width: 32px; height: 3px;
+      background: var(--red);
+      border-radius: 2px;
+    }
+    .section-label span {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--dark);
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+    .section-title .red { color: var(--red); }
+
+    /* ── SERVICES ── */
+    .services-section {
+      padding: 6rem 3rem;
+      background: var(--off);
+    }
+    .services-inner { max-width: 1200px; margin: 0 auto; }
+    .services-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 3.5rem;
+    }
+    .services-header-right p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5px;
+      background: var(--border-light);
+      border: 1.5px solid var(--border-light);
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 0;
+      background: var(--red);
+      transition: height 0.35s;
+    }
+    .service-card:hover { background: var(--dark); }
+    .service-card:hover::after { height: 100%; }
+
+    .service-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 800;
+      color: rgba(0,0,0,0.04);
+      line-height: 1;
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-num { color: rgba(255,255,255,0.04); }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      background: #fef0f0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s;
+    }
+    .service-card:hover .service-icon { background: rgba(212,43,43,0.15); }
+    .service-icon svg { color: var(--red); }
+
+    .service-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.02em;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-title { color: var(--white); }
+
+    .service-desc {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-desc { color: rgba(255,255,255,0.5); }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .service-features li {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: color 0.3s;
+    }
+    .service-card:hover .service-features li { color: rgba(255,255,255,0.4); }
+    .service-features li::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--red);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--red);
+      transition: gap 0.2s, color 0.3s;
+    }
+    .service-card:hover .service-link { color: var(--red); gap: 0.8rem; }
+
+    /* ── WHY US — DARK ── */
+    .why-section {
+      background: var(--dark);
+      padding: 6rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .why-bg-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 20vw;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.015);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+    .why-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .why-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+      align-items: end;
+    }
+    .why-header .section-title { color: var(--white); }
+    .why-header p {
+      font-size: 0.92rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.4);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.06);
+    }
+    .why-card {
+      background: var(--dark-mid);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+    }
+    .why-card:hover { background: var(--steel); }
+    .why-card-icon {
+      width: 48px; height: 48px;
+      background: var(--red-glow);
+      border: 1px solid rgba(212,43,43,0.25);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .why-card-icon svg { color: var(--red); }
+    .why-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+    .why-card-desc {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* ── PROCESS ── */
+    .process-section {
+      padding: 6rem 3rem;
+      background: var(--white);
+    }
+    .process-inner { max-width: 1200px; margin: 0 auto; }
+    .process-header { text-align: center; margin-bottom: 4rem; }
+    .process-header .section-label { justify-content: center; }
+    .process-header .section-title { margin-top: 0.5rem; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5% + 28px);
+      right: calc(12.5% + 28px);
+      height: 1px;
+      background: linear-gradient(90deg, var(--red), rgba(212,43,43,0.2));
+    }
+    .process-step {
+      padding: 0 1.5rem;
+      text-align: center;
+    }
+    .process-step-num {
+      width: 56px; height: 56px;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .process-step:nth-child(2) .process-step-num { background: var(--dark); }
+    .process-step:nth-child(3) .process-step-num { background: var(--dark); }
+    .process-step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.02em;
+    }
+    .process-step-desc {
+      font-size: 0.8rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
+
+    /* ── INSURANCE ── */
+    .insurance-section {
+      background: var(--off);
+      padding: 4rem 3rem;
+    }
+    .insurance-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .insurance-content .section-title { margin: 0.5rem 0 1rem; }
+    .insurance-content p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-bottom: 1.5rem;
+    }
+    .insurance-logos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-light);
+      border: 1px solid var(--border-light);
+    }
+    .ins-logo {
+      background: var(--white);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-mid);
+      transition: background 0.2s, color 0.2s;
+      text-align: center;
+      min-height: 70px;
+    }
+    .ins-logo:hover { background: var(--red); color: var(--white); }
+
+    /* ── QUOTE / CTA BAND ── */
+    .cta-band {
+      background: var(--red);
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .cta-band-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-band-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .cta-band-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--white);
+      color: var(--red);
+      padding: 1rem 2rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 2px;
+      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-white:hover { background: var(--dark); color: var(--white); }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      padding: 6rem 3rem;
+      background: var(--white);
+    }
+    .contact-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 5rem;
+    }
+    .contact-left .section-title { margin: 0.5rem 0 1.2rem; }
+    .contact-left > p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+      margin-bottom: 2rem;
+    }
+    .contact-info { display: flex; flex-direction: column; gap: 1rem; }
+    .contact-info-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      padding: 1.2rem;
+      border: 1px solid var(--border-light);
+      background: var(--off);
+      transition: border-color 0.2s;
+    }
+    .contact-info-item:hover { border-color: var(--red); }
+    .ci-icon {
+      width: 40px; height: 40px;
+      background: #fef0f0;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .ci-icon svg { color: var(--red); }
+    .ci-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+    }
+    .ci-val {
+      font-size: 0.95rem;
+      color: var(--dark);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .ci-val:hover { color: var(--red); }
+
+    /* Quote Form */
+    .quote-form {
+      background: var(--off);
+      border: 1px solid var(--border-light);
+      padding: 2.5rem;
+    }
+    .quote-form-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+    .quote-form-sub {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-bottom: 1.8rem;
+    }
+    .qform { display: flex; flex-direction: column; gap: 1rem; }
+    .qform-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .qform-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .qform-group label {
+      font-size: 0.63rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      font-weight: 600;
+    }
+    .qform-group input,
+    .qform-group select,
+    .qform-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      background: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      color: var(--text);
+      outline: none;
+      border-radius: 2px;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .qform-group input:focus,
+    .qform-group select:focus,
+    .qform-group textarea:focus { border-color: var(--red); }
+    .qform-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--dark);
+      color: var(--white);
+      border: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .qform-submit:hover { background: var(--red); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 4rem 3rem 1.5rem;
+    }
+    .footer-top {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand {}
+    .footer-logo-row {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+    .footer-badge {
+      background: var(--red);
+      color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      padding: 0.15rem 0.5rem;
+    }
+    .footer-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: 0.04em;
+    }
+    .footer-brand p {
+      font-size: 0.82rem;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-col-title {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-contact-line {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 0.7rem;
+      line-height: 1.5;
+    }
+    .footer-contact-line svg { color: var(--red); flex-shrink: 0; margin-top: 2px; }
+    .footer-contact-line a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .footer-contact-line a:hover { color: var(--white); }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 1.5rem auto 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── FLOATING ── */
+    .float-call {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 300;
+      background: var(--red);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 1.5rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 24px rgba(212,43,43,0.4);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .float-call:hover { background: var(--red-dark); transform: translateY(-2px); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .ann-bar { font-size: 0.65rem; }
+      nav { padding: 0 1.2rem; }
+      .nav-links { display: none; }
+      .hero-inner { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 2.5rem; }
+      .hero-right { display: grid; grid-template-columns: 1fr 1fr; }
+      .services-header { grid-template-columns: 1fr; gap: 1rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-header { grid-template-columns: 1fr; gap: 1rem; }
+      .why-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+      .insurance-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .insurance-logos { grid-template-columns: repeat(2, 1fr); }
+      .cta-band-inner { grid-template-columns: 1fr; gap: 1.5rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .qform-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="ann-bar">
+    🛡️ Most insurance claims covered at no cost to you — <a href="#contact">Get a Free Quote Today</a>
+  </div>
+
+  <!-- NAV -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-badge">A-1</div>
+      <div class="nav-logo-text">
+        <span class="nav-logo-name">Glass Repair</span>
+        <span class="nav-logo-tag">Cedar City, Utah · Est. 2000</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#insurance">Insurance</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="tel:4355868418" class="nav-cta">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline;vertical-align:middle;margin-right:4px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        435-586-8418
+      </a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="hero-eyebrow-pill">Cedar City's #1 Choice</span>
+          <span>Since 2000 · Southern Utah</span>
+        </div>
+        <h1 class="hero-title">
+          Auto Glass<br>
+          <span class="accent">Repaired.</span><br>
+          <span class="outline">Replaced.</span><br>
+          Done Right.
+        </h1>
+        <p class="hero-desc">
+          Cracked windshield? Chipped glass? A-1 Glass has been Southern Utah's most trusted auto glass specialists for over 25 years — with certified technicians, lifetime warranties, and most insurance claims handled at zero cost to you.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-red">
+            Get a Free Quote
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="tel:4355868418" class="btn-ghost">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call 435-586-8418
+          </a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-stat-card">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-num">25+</div>
+            <div class="hero-stat-label">Years in Business</div>
+          </div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-num">∞</div>
+            <div class="hero-stat-label">Lifetime Warranty</div>
+          </div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-num">$0</div>
+            <div class="hero-stat-label">Most Insurance Jobs</div>
+          </div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div>
+            <div class="hero-stat-num">★ 5</div>
+            <div class="hero-stat-label">Local Reputation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Certified Technicians
+    </div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Lifetime Warranty
+    </div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Insurance Accepted
+    </div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      ADAS Recalibration
+    </div>
+    <span class="trust-sep">·</span>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+      Heavy Equipment Glass
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services-section" id="services">
+    <div class="services-inner">
+      <div class="services-header reveal">
+        <div>
+          <div class="section-label">
+            <div class="section-label-bar"></div>
+            <span>What We Do</span>
+          </div>
+          <h2 class="section-title" style="margin-top:0.5rem;">Our <span class="red">Services</span></h2>
+        </div>
+        <div class="services-header-right">
+          <p>From a small chip to a full windshield replacement, A-1 Glass handles it all — with professional precision and the best materials on the market. We also specialize in ADAS recalibration and heavy equipment glass that most shops won't touch.</p>
+        </div>
+      </div>
+      <div class="services-grid reveal">
+
+        <a href="#contact" class="service-card">
+          <div class="service-num">01</div>
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="22" height="16" rx="2"/><line x1="1" y1="9" x2="23" y2="9"/><path d="M7 3v6M17 3v6"/></svg>
+          </div>
+          <h3 class="service-title">Auto Glass Replacement</h3>
+          <p class="service-desc">Full windshield, side, and rear glass replacement using OEM-quality glass — fitted perfectly and backed by a lifetime warranty against defects and leaks.</p>
+          <ul class="service-features">
+            <li>Windshield replacement</li>
+            <li>Side & rear windows</li>
+            <li>OEM-quality glass used</li>
+            <li>Same-day service available</li>
+          </ul>
+          <div class="service-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#contact" class="service-card">
+          <div class="service-num">02</div>
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="service-title">Chip & Crack Repair</h3>
+          <p class="service-desc">Small chip? Don't wait — it will spread. Our resin injection process restores your windshield's structural integrity quickly and at a fraction of replacement cost.</p>
+          <ul class="service-features">
+            <li>Resin injection technology</li>
+            <li>Prevents further cracking</li>
+            <li>Often covered by insurance</li>
+            <li>30-minute service</li>
+          </ul>
+          <div class="service-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#contact" class="service-card">
+          <div class="service-num">03</div>
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3 class="service-title">ADAS Recalibration</h3>
+          <p class="service-desc">Modern vehicles rely on cameras and sensors mounted to the windshield. After any replacement, ADAS recalibration ensures your safety systems work exactly as designed.</p>
+          <ul class="service-features">
+            <li>Lane departure & collision sensors</li>
+            <li>Static & dynamic calibration</li>
+            <li>All major vehicle makes</li>
+            <li>Manufacturer spec compliant</li>
+          </ul>
+          <div class="service-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#contact" class="service-card">
+          <div class="service-num">04</div>
+          <div class="service-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="6" width="22" height="13" rx="2"/><path d="M5 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M13 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><circle cx="12" cy="13" r="2"/></svg>
+          </div>
+          <h3 class="service-title">Heavy Equipment Glass</h3>
+          <p class="service-desc">Tractors, excavators, loaders, mining equipment — we stock and source specialty glass for heavy machinery that most auto glass shops can't handle.</p>
+          <ul class="service-features">
+            <li>Construction equipment</li>
+            <li>Agricultural machinery</li>
+            <li>Mining & industrial vehicles</li>
+            <li>Custom sourcing available</li>
+          </ul>
+          <div class="service-link">
+            Learn More
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why-section" id="why">
+    <div class="why-bg-text">A-1 Glass</div>
+    <div class="why-inner">
+      <div class="why-header reveal">
+        <div>
+          <div class="section-label">
+            <div class="section-label-bar"></div>
+            <span>Why Choose Us</span>
+          </div>
+          <h2 class="section-title" style="color:var(--white);margin-top:0.5rem;">The A-1 <span class="red">Difference</span></h2>
+        </div>
+        <p>We've been doing this since 2000. In Southern Utah, that means something. We don't cut corners, we don't use inferior glass, and we don't leave until the job is done right.</p>
+      </div>
+      <div class="why-grid reveal">
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="why-card-title">Lifetime Warranty</div>
+          <p class="why-card-desc">Every replacement comes with our lifetime warranty against defects, leaks, and workmanship issues. We stand behind every job we do, period.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <div class="why-card-title">Insurance Handled</div>
+          <p class="why-card-desc">We work directly with your insurance company. Most replacements and chip repairs cost you absolutely nothing out of pocket — we handle all the paperwork.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="why-card-title">Fast Turnaround</div>
+          <p class="why-card-desc">Chip repairs take as little as 30 minutes. Most full replacements are completed same day. We know you need your vehicle — we don't keep you waiting.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div class="why-card-title">Certified Technicians</div>
+          <p class="why-card-desc">Our team is professionally trained and stays current on the latest glass technology — including ADAS systems that demand precision calibration after every replacement.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="why-card-title">Local & Trusted</div>
+          <p class="why-card-desc">Based in Cedar City since 2000, we're your neighbors. We serve the entire Southern Utah region and have built our reputation one satisfied customer at a time.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="why-card-title">OEM-Quality Glass</div>
+          <p class="why-card-desc">We never compromise on materials. Every replacement uses OEM or OEM-equivalent glass that meets your vehicle manufacturer's exact specifications for safety and fit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process-section" id="process">
+    <div class="process-inner">
+      <div class="process-header reveal">
+        <div class="section-label">
+          <div class="section-label-bar"></div>
+          <span>How It Works</span>
+        </div>
+        <h2 class="section-title" style="margin-top:0.5rem;">Simple. Fast. <span class="red">Done.</span></h2>
+      </div>
+      <div class="process-steps reveal">
+        <div class="process-step">
+          <div class="process-step-num">1</div>
+          <div class="process-step-title">Get a Quote</div>
+          <p class="process-step-desc">Call us or fill out the form. We'll assess the damage and give you a fast, honest quote — usually within minutes.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">2</div>
+          <div class="process-step-title">Insurance Check</div>
+          <p class="process-step-desc">We verify your coverage and handle all insurance paperwork directly. Most jobs cost you nothing.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num">3</div>
+          <div class="process-step-title">We Fix It</div>
+          <p class="process-step-desc">Our certified technicians complete the repair or replacement with precision — often same day.</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step-num" style="background:var(--red);">4</div>
+          <div class="process-step-title">Drive Away</div>
+          <p class="process-step-desc">Your vehicle is safe, sealed, and under lifetime warranty. You're good to go.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSURANCE -->
+  <section class="insurance-section" id="insurance">
+    <div class="insurance-inner">
+      <div class="insurance-content reveal">
+        <div class="section-label">
+          <div class="section-label-bar"></div>
+          <span>Insurance</span>
+        </div>
+        <h2 class="section-title">We Work With <span class="red">Your</span> Insurance</h2>
+        <p>Don't let cost stop you from getting your glass fixed safely. We accept all major insurance providers and handle the entire claims process on your behalf. In most cases, your out-of-pocket cost is $0.</p>
+        <a href="#contact" class="btn-red">Check My Coverage</a>
+      </div>
+      <div class="insurance-logos reveal">
+        <div class="ins-logo">State Farm</div>
+        <div class="ins-logo">GEICO</div>
+        <div class="ins-logo">Progressive</div>
+        <div class="ins-logo">Allstate</div>
+        <div class="ins-logo">Farmers</div>
+        <div class="ins-logo">USAA</div>
+        <div class="ins-logo">Liberty Mutual</div>
+        <div class="ins-logo">Nationwide</div>
+        <div class="ins-logo">+ All Others</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <div class="cta-band">
+    <div class="cta-band-inner">
+      <div>
+        <div class="cta-band-title">Cracked Windshield? Don't Wait.</div>
+        <p class="cta-band-sub">Small chips become big cracks fast. Call now or request a free quote online — we'll get you in today.</p>
+      </div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="tel:4355868418" class="btn-white">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 435-586-8418
+        </a>
+        <a href="#contact" class="btn-ghost" style="border-color:rgba(255,255,255,0.4);color:var(--white);">Free Quote Online</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-inner">
+      <div class="reveal">
+        <div class="section-label">
+          <div class="section-label-bar"></div>
+          <span>Contact Us</span>
+        </div>
+        <h2 class="section-title" style="margin:0.5rem 0 1.2rem;">Get in <span class="red">Touch</span></h2>
+        <p>Ready to get your glass fixed? Call us directly or fill out the quote form and we'll get back to you fast — usually same day.</p>
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <a href="tel:4355868418" class="ci-val">435-586-8418</a>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Location</div>
+              <span class="ci-val" style="cursor:default;font-size:0.88rem;">Cedar City, Utah — Serving all of Southern UT</span>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div>
+              <div class="ci-label">Hours</div>
+              <span class="ci-val" style="cursor:default;font-size:0.88rem;">Mon – Fri: 8:00 AM – 5:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="quote-form">
+          <div class="quote-form-title">Request a Free Quote</div>
+          <div class="quote-form-sub">Fill out the form — we'll respond same day</div>
+          <div class="qform">
+            <div class="qform-row">
+              <div class="qform-group">
+                <label>First Name *</label>
+                <input type="text" placeholder="John" />
+              </div>
+              <div class="qform-group">
+                <label>Last Name *</label>
+                <input type="text" placeholder="Smith" />
+              </div>
+            </div>
+            <div class="qform-group">
+              <label>Phone Number *</label>
+              <input type="tel" placeholder="(435) 000-0000" />
+            </div>
+            <div class="qform-group">
+              <label>Vehicle (Year, Make, Model) *</label>
+              <input type="text" placeholder="e.g. 2021 Toyota Camry" />
+            </div>
+            <div class="qform-group">
+              <label>Service Needed *</label>
+              <select>
+                <option value="">Select a service...</option>
+                <option>Windshield Replacement</option>
+                <option>Chip / Crack Repair</option>
+                <option>Side or Rear Window</option>
+                <option>ADAS Recalibration</option>
+                <option>Heavy Equipment Glass</option>
+                <option>Not Sure — Need Assessment</option>
+              </select>
+            </div>
+            <div class="qform-group">
+              <label>Do You Have Insurance?</label>
+              <select>
+                <option value="">Select...</option>
+                <option>Yes — I have comprehensive coverage</option>
+                <option>Yes — Not sure if glass is covered</option>
+                <option>No — I'll be paying out of pocket</option>
+              </select>
+            </div>
+            <div class="qform-group">
+              <label>Additional Details</label>
+              <textarea rows="3" placeholder="Describe the damage or any other details..."></textarea>
+            </div>
+            <button class="qform-submit" onclick="alert('Thanks! A-1 Glass will contact you shortly.')">
+              Submit Free Quote Request →
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo-row">
+          <div class="footer-badge">A-1</div>
+          <div class="footer-name">Glass Repair</div>
+        </div>
+        <p>Cedar City's most trusted auto glass specialists since 2000. Serving Southern Utah with certified technicians, OEM-quality glass, and lifetime warranties on every job.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Auto Glass Replacement</a></li>
+          <li><a href="#services">Chip & Crack Repair</a></li>
+          <li><a href="#services">ADAS Recalibration</a></li>
+          <li><a href="#services">Heavy Equipment Glass</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#why">Why A-1 Glass</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#insurance">Insurance</a></li>
+          <li><a href="#contact">Request Quote</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-line">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:4355868418">435-586-8418</a>
+        </div>
+        <div class="footer-contact-line">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Cedar City, Utah 84720</span>
+        </div>
+        <div class="footer-contact-line">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          <span>Mon–Fri: 8:00 AM – 5:00 PM</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 A-1 Glass. All rights reserved. Cedar City, Utah.</p>
+      <p>Serving Cedar City, St. George, Kanab, Parowan & all of Southern Utah</p>
+    </div>
+  </footer>
+
+  <!-- Floating Call Button -->
+  <a href="tel:4355868418" class="float-call">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    Call Now
+  </a>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => obs.observe(el));
+  </script>
+</body>
+</html>
